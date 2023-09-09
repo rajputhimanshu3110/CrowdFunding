@@ -44,7 +44,7 @@ const CreateCampaign = () => {
       {isLoading && "Loader.."}
       <div className="flex justify-center items-center p-[16px] sm:min-w-[300px] bg-[#3a3a43] rounded-[10px]">
         <h1 className="font epilogue font-bold sm:text-[25px] leading-[30px] text-white">
-          Start a Campaign
+          Start Campaign
         </h1>
       </div>
       <form
