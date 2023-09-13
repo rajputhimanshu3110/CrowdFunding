@@ -26,8 +26,8 @@ module.exports = {
     },
   },
   paths: {
-    artifacts: "./artifacts-zk",
-    cache: "./cache-zk",
+    artifacts: "./artifacts",
+    cache: "./cache",
     sources: "./contracts",
     tests: "./test",
   },

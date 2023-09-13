@@ -1,11 +1,29 @@
-import React from 'react'
-
+import React, {useState, useEffect} from 'react'
+import { useStateContext } from '../context'
+import { DisplayCampaign } from '../components';
 const Home = () => {
+  const [isLoading,setIsLoading] = useState(false);
+  const [Campaigns, setCampaigns] = useState([]);
+  const {address, contract, getCampaigns } = useStateContext();
+  
+  const fetchCampaigns= async () => {
+    setIsLoading(true);
+    const data = await getCampaigns();
+    setCampaigns(data);
+    setIsLoading(false);
+  }
+
+  useEffect(()=>{
+    if(contract) fetchCampaigns();
+  },[address,contract])
+  
   return (
-    <div>
-      This is Home
-    </div>
-  )
+    <DisplayCampaign
+      title="All Campaigns"
+      isLoading={isLoading}
+      campaigns={Campaigns}
+    />
+  );
 }
 
 export default Home

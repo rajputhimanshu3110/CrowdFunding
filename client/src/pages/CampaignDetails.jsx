@@ -19,7 +19,7 @@ const CampaignDetails = () => {
   const handleDonate= async()=>{
     setIsLoading(true);
     await donate(state.pId);
-    
+
     setIsLoading(false);
   }
   const fetchDonators = async () => {
