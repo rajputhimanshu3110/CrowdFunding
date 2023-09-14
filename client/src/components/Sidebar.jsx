@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logo, sun } from "../assets";
 import { navlinks } from "../constants";
 import { constants } from "ethers";
+import { useDisconnect } from "@thirdweb-dev/react";
 
 const Icon = ({ styles, name, imgUrl, IsActive, disabled, handleClick }) => (
   <div
@@ -28,6 +29,7 @@ const Icon = ({ styles, name, imgUrl, IsActive, disabled, handleClick }) => (
 const Sidebar = () => {
   const navigate = useNavigate();
   const [IsActive, setIsActive] = useState("dashboard");
+  const disconnect = useDisconnect();
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
       <Link to="/">
@@ -39,8 +41,14 @@ const Sidebar = () => {
                 navlinks.map((link) => (
                     <Icon key={link.name}{...link} IsActive={IsActive} handleClick={()=>{
                         if(!link.disabled){
-                            setIsActive(link.name);
-                            navigate(link.link);
+                            
+                            if(link.name==="logout"){
+                                disconnect();
+                            }else{
+                              setIsActive(link.name);
+                              navigate(link.link);
+                            }
+                            
                         }
                     }}
                     />
